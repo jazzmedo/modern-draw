@@ -779,7 +779,8 @@ const ICONS = {
 
 const rawUrl = (path) =>
   `https://raw.githubusercontent.com/${REPO.owner}/${REPO.name}/${REPO.branch}/${path.split("/").map(encodeURIComponent).join("/")}`;
-const editUrl = (path) => `https://app.diagrams.net/?title=${encodeURIComponent(path.split("/").pop())}#U${encodeURIComponent(rawUrl(path))}`;
+const SCRATCHPAD_URL = "https://raw.githubusercontent.com/Jazzmedo/modern-draw/refs/heads/main/Others/Scratchpad.xml";
+const editUrl = (path) => `https://app.diagrams.net/?title=${encodeURIComponent(path.split("/").pop())}&splash=0&dark=0&math=1&clibs=${encodeURIComponent("U" + SCRATCHPAD_URL)}#U${encodeURIComponent(rawUrl(path))}`;
 const viewUrl = (path) => `https://viewer.diagrams.net/?lightbox=1&edit=_blank&url=${encodeURIComponent(rawUrl(path))}`;
 
 function escapeHtml(s) {
