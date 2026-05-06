@@ -239,6 +239,26 @@
   .disclaimer svg { flex-shrink: 0; margin-top: 2px; }
   .disclaimer strong { color: var(--warn); font-weight: 600; }
 
+  .hero-cta {
+    margin: 22px auto 0;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    animation: fadeUp 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+  .hero-cta .btn.primary {
+    padding: 11px 20px;
+    font-size: 0.95rem;
+  }
+  .hero-cta-sub {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
   .controls {
     margin: 40px 0 24px;
     display: flex;
@@ -506,9 +526,12 @@
     <div class="eyebrow"><span class="dot"></span>Personal study archive</div>
     <h1>Diagrams & summaries for<br><span class="accent">CS @ Modern Academy</span></h1>
     <p class="lead">A curated collection of <code style="font-family: 'JetBrains Mono', monospace; font-size: 0.92em; opacity: 0.9;">.drawio</code> notes, rule sheets, and study aids — open any one in the draw.io editor with a click.</p>
-    <div class="disclaimer">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span><strong>Not official course material.</strong> These are personal student summaries — verify against your official lecture material before relying on anything here.</span>
+    <div class="hero-cta">
+      <a id="blank-cta" class="btn primary" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span>Make your own PDF</span>
+      </a>
+      <p class="hero-cta-sub">Opens an empty draw.io editor with the Scratchpad shape library, light mode, and LaTeX math enabled start your own summary from scratch.</p>
     </div>
   </section>
 
@@ -782,6 +805,8 @@ const rawUrl = (path) =>
 const SCRATCHPAD_URL = "https://raw.githubusercontent.com/Jazzmedo/modern-draw/refs/heads/main/Others/Scratchpad.xml";
 const editUrl = (path) => `https://app.diagrams.net/?title=${encodeURIComponent(path.split("/").pop())}&splash=0&dark=0&math=1&clibs=${encodeURIComponent("U" + SCRATCHPAD_URL)}#U${encodeURIComponent(rawUrl(path))}`;
 const viewUrl = (path) => `https://viewer.diagrams.net/?lightbox=1&edit=_blank&url=${encodeURIComponent(rawUrl(path))}`;
+const blankUrl = `https://app.diagrams.net/?splash=0&dark=0&math=1&clibs=${encodeURIComponent("U" + SCRATCHPAD_URL)}`;
+document.getElementById("blank-cta").href = blankUrl;
 
 function escapeHtml(s) {
   return s.replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
