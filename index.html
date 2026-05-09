@@ -6,7 +6,8 @@
 <title>Draw.io Summaries — CS @ Modern Academy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <style>
   :root {
     --bg: #0a0b0f;
@@ -53,6 +54,11 @@
   *::selection { background: var(--accent-glow); color: var(--text); }
 
   html { scroll-behavior: smooth; }
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+  .lenis.lenis-smooth iframe { pointer-events: none; }
   body {
     margin: 0;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -602,6 +608,19 @@
   @media (hover: none) {
     .btn:hover, .icon-btn:hover, .group:hover { transform: none; }
   }
+
+  /* RTL overrides */
+  [dir="rtl"] body { font-family: 'Cairo', 'Inter', system-ui, -apple-system, sans-serif; }
+  [dir="rtl"] .search svg { left: auto; right: 14px; }
+  [dir="rtl"] .search input { padding: 12px 42px 12px 16px; }
+  [dir="rtl"] .tip ol, [dir="rtl"] .tip ul { padding-left: 0; padding-right: 22px; }
+  [dir="rtl"] .tip pre { direction: ltr; text-align: left; }
+  [dir="rtl"] .tip code:not(pre code), [dir="rtl"] .tip kbd { direction: ltr; display: inline-block; }
+  [dir="rtl"] .group-chev svg { transform: scaleX(-1); }
+  [dir="rtl"] .file-name { text-align: right; }
+  @media (max-width: 480px) {
+    [dir="rtl"] .search input { padding: 11px 38px 11px 14px; }
+  }
 </style>
 </head>
 <body>
@@ -615,6 +634,9 @@
       <a class="icon-btn" href="https://github.com/Jazzmedo/draw" target="_blank" rel="noopener" aria-label="GitHub">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.01c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.68.79.56A11.51 11.51 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
       </a>
+      <button class="icon-btn" id="lang-toggle" aria-label="Toggle language" title="Toggle language">
+        <span id="lang-label" style="font-weight:600;font-size:0.78rem;letter-spacing:0.02em;">ع</span>
+      </button>
       <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">
         <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
       </button>
@@ -624,15 +646,15 @@
 
 <div class="container">
   <section class="hero">
-    <div class="eyebrow"><span class="dot"></span>Personal study archive</div>
-    <h1>Diagrams & summaries for<br><span class="accent">CS @ Modern Academy</span></h1>
-    <p class="lead">A curated collection of <code style="font-family: 'JetBrains Mono', monospace; font-size: 0.92em; opacity: 0.9;">.drawio</code> notes, rule sheets, and study aids — open any one in the draw.io editor with a click.</p>
+    <div class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">Personal study archive</span></div>
+    <h1 data-i18n="hero.title">Diagrams & summaries for<br><span class="accent">CS @ Modern Academy</span></h1>
+    <p class="lead" data-i18n="hero.lead">A curated collection of <code style="font-family: 'JetBrains Mono', monospace; font-size: 0.92em; opacity: 0.9;">.drawio</code> notes, rule sheets, and study aids — open any one in the draw.io editor with a click.</p>
     <div class="hero-cta">
       <a id="blank-cta" class="btn primary" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        <span>Make your own PDF</span>
+        <span data-i18n="hero.cta">Make your own PDF</span>
       </a>
-      <p class="hero-cta-sub">Opens an empty draw.io editor with the Scratchpad shape library, light mode, and LaTeX math enabled start your own summary from scratch.</p>
+      <p class="hero-cta-sub" data-i18n="hero.ctaSub">Opens an empty draw.io editor with the Scratchpad shape library, light mode, and LaTeX math enabled start your own summary from scratch.</p>
     </div>
   </section>
 
@@ -645,15 +667,15 @@
   </div>
 
   <div id="groups"></div>
-  <p class="empty" id="empty" hidden>No diagrams match your search.</p>
+  <p class="empty" id="empty" data-i18n="empty" hidden>No diagrams match your search.</p>
 
   <div class="tips-heading">
-    <h2>Editor tips & tricks</h2>
-    <p>Get more out of draw.io while building your summaries — math, fonts, and beautiful code snippets.</p>
+    <h2 data-i18n="tips.heading">Editor tips & tricks</h2>
+    <p data-i18n="tips.sub">Get more out of draw.io while building your summaries — math, fonts, and beautiful code snippets.</p>
   </div>
 
   <section class="tips" aria-label="Editor tips">
-    <article class="tip">
+    <article class="tip" id="tip-math">
       <h2>Math formulas with LaTeX <span class="chip">math</span></h2>
       <p>Draw.io can render LaTeX inside any shape or text label — perfect for theorems, equations, and proofs in your summaries. Wrap your formula in single backticks <code>`…`</code> for inline math, or double dollars <code>$$…$$</code> for a display block.</p>
       <p><strong>Enable it (already on for files opened from this site):</strong></p>
@@ -670,7 +692,7 @@ $$\int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}$$</code></pre>
       <p>Reference: <a href="https://apitemplate.io/pdf-tools/convert-markdown-to-pdf/" target="_blank" rel="noopener">apitemplate.io — Convert Markdown (with LaTeX) to PDF</a>.</p>
     </article>
 
-    <article class="tip">
+    <article class="tip" id="tip-fonts">
       <h2>Custom typography with Google Fonts <span class="chip">fonts</span></h2>
       <p>Draw.io supports any font from <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a> — just enable the integration once and type the family name.</p>
       <ol>
@@ -686,7 +708,7 @@ $$\int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}$$</code></pre>
       <p><strong>Note:</strong> the font name must match the Google Fonts family <em>exactly</em> (case-sensitive). Browse <a href="https://fonts.google.com" target="_blank" rel="noopener">fonts.google.com</a> to find the right name.</p>
     </article>
 
-    <article class="tip">
+    <article class="tip" id="tip-code">
       <h2>Beautiful code snippets <span class="chip">code</span></h2>
       <p>Plain text doesn't do code justice. Two ways to get syntax-highlighted snippets into your diagrams:</p>
       <p><strong>Option 1 — Carbon (online, easiest):</strong></p>
@@ -710,8 +732,8 @@ $$\int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}$$</code></pre>
 </div>
 
 <footer>
-  <span>Source: <a href="https://github.com/Jazzmedo/draw" target="_blank" rel="noopener">github.com/Jazzmedo/draw</a></span>
-  <span>Opens in <a href="https://app.diagrams.net" target="_blank" rel="noopener">app.diagrams.net</a></span>
+  <span data-i18n="footer.source">Source: <a href="https://github.com/Jazzmedo/draw" target="_blank" rel="noopener">github.com/Jazzmedo/draw</a></span>
+  <span data-i18n="footer.opens">Opens in <a href="https://app.diagrams.net" target="_blank" rel="noopener">app.diagrams.net</a></span>
 </footer>
 
 <script>
@@ -966,9 +988,9 @@ function render(filter = "") {
               <span class="file-icon">${svg(ICONS.file, 16)}</span>
               <span class="file-name">${escapeHtml(file.name)}</span>
               <span class="actions">
-                <a class="btn primary" href="${editUrl(file.path)}" target="_blank" rel="noopener">${svg(ICONS.external, 13)}<span>Edit</span></a>
-                <a class="btn" href="${viewUrl(file.path)}" target="_blank" rel="noopener">${svg(ICONS.eye, 13)}<span>View</span></a>
-                <a class="btn" href="${rawUrl(file.path)}" download>${svg(ICONS.download, 13)}<span>Save</span></a>
+                <a class="btn primary" href="${editUrl(file.path)}" target="_blank" rel="noopener">${svg(ICONS.external, 13)}<span>${(I18N[currentLang]||I18N.en)["btn.edit"]}</span></a>
+                <a class="btn" href="${viewUrl(file.path)}" target="_blank" rel="noopener">${svg(ICONS.eye, 13)}<span>${(I18N[currentLang]||I18N.en)["btn.view"]}</span></a>
+                <a class="btn" href="${rawUrl(file.path)}" download>${svg(ICONS.download, 13)}<span>${(I18N[currentLang]||I18N.en)["btn.save"]}</span></a>
               </span>
             </li>
           `).join("")}
@@ -978,6 +1000,160 @@ function render(filter = "") {
     groupsEl.appendChild(div);
     i++;
   }
+}
+
+// i18n — Egyptian Arabic translations
+const I18N = {
+  en: {
+    "hero.eyebrow": "Personal study archive",
+    "hero.title": 'Diagrams & summaries for<br><span class="accent">CS @ Modern Academy</span>',
+    "hero.lead": 'A curated collection of <code style="font-family: \'JetBrains Mono\', monospace; font-size: 0.92em; opacity: 0.9;">.drawio</code> notes, rule sheets, and study aids — open any one in the draw.io editor with a click.',
+    "hero.cta": "Make your own PDF",
+    "hero.ctaSub": "Opens an empty draw.io editor with the Scratchpad shape library, light mode, and LaTeX math enabled start your own summary from scratch.",
+    "search.placeholder": "Search diagrams…",
+    "empty": "No diagrams match your search.",
+    "tips.heading": "Editor tips & tricks",
+    "tips.sub": "Get more out of draw.io while building your summaries — math, fonts, and beautiful code snippets.",
+    "footer.source": 'Source: <a href="https://github.com/Jazzmedo/draw" target="_blank" rel="noopener">github.com/Jazzmedo/draw</a>',
+    "footer.opens": 'Opens in <a href="https://app.diagrams.net" target="_blank" rel="noopener">app.diagrams.net</a>',
+    "btn.edit": "Edit", "btn.view": "View", "btn.save": "Save",
+    "tip.math": `
+      <h2>Math formulas with LaTeX <span class="chip">math</span></h2>
+      <p>Draw.io can render LaTeX inside any shape or text label — perfect for theorems, equations, and proofs in your summaries. Wrap your formula in single backticks <code>\`…\`</code> for inline math, or double dollars <code>$$…$$</code> for a display block.</p>
+      <p><strong>Enable it (already on for files opened from this site):</strong></p>
+      <ol>
+        <li>Open the editor with the <em>Edit</em> button above (the URL already includes <code>math=1</code>).</li>
+        <li>If you opened draw.io manually, go to <kbd>Extras</kbd> → <kbd>Mathematical Typesetting</kbd> and make sure it's checked.</li>
+        <li>Double-click any shape, type your formula between backticks, and press <kbd>Esc</kbd> to render.</li>
+      </ol>
+      <p><strong>Examples:</strong></p>
+      <pre><code>\`E = mc^2\`
+\`\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}\`
+$$\\int_0^\\infty e^{-x^2}\\,dx = \\frac{\\sqrt{\\pi}}{2}$$</code></pre>
+      <p><strong>Tip:</strong> you don't need to memorize LaTeX — ask any AI assistant (ChatGPT, Claude, Gemini) to "convert this equation to LaTeX" and paste the result between the backticks.</p>
+      <p>Reference: <a href="https://apitemplate.io/pdf-tools/convert-markdown-to-pdf/" target="_blank" rel="noopener">apitemplate.io — Convert Markdown (with LaTeX) to PDF</a>.</p>`,
+    "tip.fonts": `
+      <h2>Custom typography with Google Fonts <span class="chip">fonts</span></h2>
+      <p>Draw.io supports any font from <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a> — just enable the integration once and type the family name.</p>
+      <ol>
+        <li>In the editor, open <kbd>Extras</kbd> → <kbd>Configuration…</kbd>.</li>
+        <li>Paste this JSON (or merge into existing config) and click <kbd>Apply</kbd> — the editor will reload:
+          <pre><code>{
+  "customFonts": ["Roboto", "Poppins", "Fira Code", "JetBrains Mono"]
+}</code></pre>
+        </li>
+        <li>Select any text or shape, open the right-side <kbd>Text</kbd> panel, and either pick a font from the <em>Custom Fonts</em> list or type the exact Google Fonts name (e.g. <code>Poppins</code>, <code>Cairo</code>, <code>Fira Code</code>).</li>
+        <li>The font is fetched from Google Fonts on the fly and embedded when you export to PDF/PNG.</li>
+      </ol>
+      <p><strong>Note:</strong> the font name must match the Google Fonts family <em>exactly</em> (case-sensitive). Browse <a href="https://fonts.google.com" target="_blank" rel="noopener">fonts.google.com</a> to find the right name.</p>`,
+    "tip.code": `
+      <h2>Beautiful code snippets <span class="chip">code</span></h2>
+      <p>Plain text doesn't do code justice. Two ways to get syntax-highlighted snippets into your diagrams:</p>
+      <p><strong>Option 1 — Carbon (online, easiest):</strong></p>
+      <ol>
+        <li>Open <a href="https://carbon.now.sh/" target="_blank" rel="noopener">carbon.now.sh</a>.</li>
+        <li>Paste your code, pick a theme and language.</li>
+        <li>Click <kbd>Export</kbd> → save as PNG (or copy as image).</li>
+        <li>Drag the image straight onto the draw.io canvas.</li>
+      </ol>
+      <p><strong>Option 2 — VS Code (keeps native fonts &amp; theme):</strong></p>
+      <ol>
+        <li>In VS Code, open <kbd>Ctrl</kbd>+<kbd>K</kbd> <kbd>Ctrl</kbd>+<kbd>S</kbd> to open <em>Keyboard Shortcuts</em>.</li>
+        <li>Search for the command <code>Copy With Syntax Highlighting</code> and bind it to a shortcut you'll remember (e.g. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd>).</li>
+        <li>Select the code you want to copy in the editor.</li>
+        <li>Press your new keybinding — VS Code copies the styled snippet to the clipboard.</li>
+        <li>Switch to draw.io and paste it onto a code-snippet shape from the <em>Scratchpad</em> library (the Scratchpad is preloaded when you open files from this site).</li>
+      </ol>
+      <p><strong>Tip:</strong> the Scratchpad already includes ready-made code-block frames — paste your highlighted code inside one for a clean, consistent look across all your summaries.</p>`,
+  },
+  ar: {
+    "hero.eyebrow": "أرشيف مذاكرة شخصي",
+    "hero.title": 'رسومات وملخصات لـ<br><span class="accent">علوم الحاسب @ الأكاديمية الحديثة</span>',
+    "hero.lead": 'مجموعة منتقاة من ملفات <code style="font-family: \'JetBrains Mono\', monospace; font-size: 0.92em; opacity: 0.9;">.drawio</code> فيها ملخصات وقواعد ومذكرات — افتح أي واحد في محرر draw.io بضغطة.',
+    "hero.cta": "اعمل PDF بتاعك",
+    "hero.ctaSub": "بيفتحلك محرر draw.io فاضي، بمكتبة Scratchpad ووضع نهاري ودعم LaTeX للرياضيات — ابدأ ملخصك من الصفر.",
+    "search.placeholder": "ابحث في الرسومات…",
+    "empty": "مفيش رسومات مطابقة لبحثك.",
+    "tips.heading": "نصايح وحيل المحرر",
+    "tips.sub": "استفد أكتر من draw.io وانت بتعمل ملخصاتك — رياضيات، خطوط، وأكواد شيك.",
+    "footer.source": 'المصدر: <a href="https://github.com/Jazzmedo/draw" target="_blank" rel="noopener">github.com/Jazzmedo/draw</a>',
+    "footer.opens": 'بيفتح في <a href="https://app.diagrams.net" target="_blank" rel="noopener">app.diagrams.net</a>',
+    "btn.edit": "تعديل", "btn.view": "عرض", "btn.save": "تنزيل",
+    "tip.math": `
+      <h2>معادلات الرياضيات بـ LaTeX <span class="chip">رياضيات</span></h2>
+      <p>draw.io يقدر يعرض LaTeX جوه أي شكل أو نص — مثالي للنظريات والمعادلات والإثباتات في ملخصاتك. لُف معادلتك بين علامتي backtick <code>\`…\`</code> للرياضيات داخل السطر، أو بين <code>$$…$$</code> لو عايزها بلوك مستقل.</p>
+      <p><strong>تفعيلها (شغّالة افتراضياً للملفات اللي بتفتحها من الموقع ده):</strong></p>
+      <ol>
+        <li>افتح المحرر بزرار <em>تعديل</em> فوق (الرابط أصلاً فيه <code>math=1</code>).</li>
+        <li>لو فاتح draw.io يدوياً، روح <kbd>Extras</kbd> ← <kbd>Mathematical Typesetting</kbd> وتأكد إنها متفعّلة.</li>
+        <li>دبل-كليك على أي شكل، اكتب معادلتك بين الـ backticks، ودوس <kbd>Esc</kbd> عشان ترسم.</li>
+      </ol>
+      <p><strong>أمثلة:</strong></p>
+      <pre><code>\`E = mc^2\`
+\`\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}\`
+$$\\int_0^\\infty e^{-x^2}\\,dx = \\frac{\\sqrt{\\pi}}{2}$$</code></pre>
+      <p><strong>نصيحة:</strong> مش لازم تحفظ LaTeX — اطلب من أي مساعد ذكاء اصطناعي (ChatGPT، Claude، Gemini) إنه «يحوّل المعادلة دي لـ LaTeX» وحط الناتج بين الـ backticks.</p>
+      <p>المرجع: <a href="https://apitemplate.io/pdf-tools/convert-markdown-to-pdf/" target="_blank" rel="noopener">apitemplate.io — تحويل Markdown (مع LaTeX) لـ PDF</a>.</p>`,
+    "tip.fonts": `
+      <h2>خطوط مخصصة من Google Fonts <span class="chip">خطوط</span></h2>
+      <p>draw.io بيدعم أي خط من <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a> — كل اللي عليك تفعّل الميزة مرة واحدة وتكتب اسم الخط.</p>
+      <ol>
+        <li>في المحرر، افتح <kbd>Extras</kbd> ← <kbd>Configuration…</kbd>.</li>
+        <li>الصق الـ JSON ده (أو ادمجه مع إعداداتك) ودوس <kbd>Apply</kbd> — المحرر هيعمل reload:
+          <pre><code>{
+  "customFonts": ["Roboto", "Poppins", "Fira Code", "JetBrains Mono"]
+}</code></pre>
+        </li>
+        <li>اختار أي نص أو شكل، افتح بانل <kbd>Text</kbd>، واختار خط من قائمة <em>Custom Fonts</em> أو اكتب اسم الخط من Google Fonts بالظبط (مثلاً <code>Poppins</code> أو <code>Cairo</code> أو <code>Fira Code</code>).</li>
+        <li>الخط بيتحمّل من Google Fonts على طول، وبيتحفظ مع الملف لما تصدّره PDF/PNG.</li>
+      </ol>
+      <p><strong>ملاحظة:</strong> اسم الخط لازم يكون مطابق تماماً لاسم العائلة على Google Fonts (حساس لحالة الحروف). شوف <a href="https://fonts.google.com" target="_blank" rel="noopener">fonts.google.com</a> عشان تلاقي الاسم الصح.</p>`,
+    "tip.code": `
+      <h2>أكواد بشكل شيك <span class="chip">كود</span></h2>
+      <p>النص العادي مش بيعمل حق الأكواد. عندك طريقتين تجيب snippet ملوّن وتحطه في الرسمة:</p>
+      <p><strong>الطريقة الأولى — Carbon (أونلاين وأسهل):</strong></p>
+      <ol>
+        <li>افتح <a href="https://carbon.now.sh/" target="_blank" rel="noopener">carbon.now.sh</a>.</li>
+        <li>الصق كودك واختار ثيم ولغة.</li>
+        <li>دوس <kbd>Export</kbd> ← احفظ PNG (أو انسخ كصورة).</li>
+        <li>اسحب الصورة على canvas الـ draw.io على طول.</li>
+      </ol>
+      <p><strong>الطريقة التانية — VS Code (بيحافظ على الخط والثيم):</strong></p>
+      <ol>
+        <li>في VS Code، دوس <kbd>Ctrl</kbd>+<kbd>K</kbd> ورا <kbd>Ctrl</kbd>+<kbd>S</kbd> عشان تفتح <em>Keyboard Shortcuts</em>.</li>
+        <li>دوّر على أمر <code>Copy With Syntax Highlighting</code> وحطله اختصار سهل تفتكره (مثلاً <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd>).</li>
+        <li>حدد الكود اللي عايز تنسخه في المحرر.</li>
+        <li>دوس الاختصار اللي ضبطته — VS Code هيعمل copy للـ snippet بستايله الكامل.</li>
+        <li>ارجع draw.io والصق الكود في شكل code-snippet من مكتبة <em>Scratchpad</em> (المكتبة بتتحمّل تلقائياً مع الملفات من الموقع).</li>
+      </ol>
+      <p><strong>نصيحة:</strong> الـ Scratchpad فيه إطارات أكواد جاهزة — الصق الكود الملوّن جواها عشان كل ملخصاتك تطلع بنفس الستايل النضيف.</p>`,
+  },
+};
+
+let currentLang = "en";
+function applyLang(lang) {
+  if (!I18N[lang]) lang = "en";
+  currentLang = lang;
+  const html = document.documentElement;
+  html.lang = lang === "ar" ? "ar" : "en";
+  html.dir = lang === "ar" ? "rtl" : "ltr";
+  const t = I18N[lang];
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    if (t[key] != null) el.innerHTML = t[key];
+  });
+  const tipMath = document.getElementById("tip-math");
+  const tipFonts = document.getElementById("tip-fonts");
+  const tipCode = document.getElementById("tip-code");
+  if (tipMath) tipMath.innerHTML = t["tip.math"];
+  if (tipFonts) tipFonts.innerHTML = t["tip.fonts"];
+  if (tipCode) tipCode.innerHTML = t["tip.code"];
+  const q = document.getElementById("q");
+  if (q) q.placeholder = t["search.placeholder"];
+  const langLabel = document.getElementById("lang-label");
+  if (langLabel) langLabel.textContent = lang === "ar" ? "EN" : "ع";
+  try { localStorage.setItem("lang", lang); } catch (_) {}
+  if (typeof render === "function") render(q ? q.value : "");
 }
 
 // Theme toggle (persisted)
@@ -996,6 +1172,13 @@ document.getElementById("theme-toggle").addEventListener("click", () =>
 
 document.getElementById("q").addEventListener("input", (e) => render(e.target.value));
 render();
+
+// Language toggle (persisted)
+const savedLang = (() => { try { return localStorage.getItem("lang"); } catch (_) { return null; } })();
+applyLang(savedLang || "en");
+document.getElementById("lang-toggle").addEventListener("click", () =>
+  applyLang(currentLang === "ar" ? "en" : "ar")
+);
 
 // cursor-following background glow
 const glow = document.querySelector(".bg-glow");
@@ -1026,6 +1209,31 @@ addEventListener("touchmove", (e) => {
   if (e.touches[0]) setTarget(e.touches[0].clientX, e.touches[0].clientY);
 }, { passive: true });
 setTarget(innerWidth / 2, innerHeight / 2);
+
+// Buttery smooth inertial scrolling (Lenis)
+function initLenis() {
+  if (typeof Lenis === "undefined") return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const lenis = new Lenis({
+    duration: 1.15,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    smoothTouch: false,
+    wheelMultiplier: 1,
+    touchMultiplier: 1.4,
+  });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
+if (document.readyState === "complete" || document.readyState === "interactive") {
+  setTimeout(initLenis, 0);
+} else {
+  addEventListener("DOMContentLoaded", initLenis);
+}
+addEventListener("load", initLenis, { once: true });
 </script>
 </body>
 </html>
