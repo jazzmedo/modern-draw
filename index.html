@@ -426,6 +426,107 @@
     font-size: 0.95rem;
   }
 
+  .tips-heading {
+    margin: 56px 0 18px;
+    text-align: center;
+  }
+  .tips-heading h2 {
+    margin: 0 0 6px;
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tips-heading p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+
+  .tips {
+    margin: 0;
+    display: grid;
+    gap: 16px;
+  }
+  .tip {
+    background: var(--panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    transition: border-color 0.2s ease;
+  }
+  .tip:hover { border-color: var(--border-strong); }
+  .tip h2 {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tip h2 .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    letter-spacing: 0;
+  }
+  .tip p {
+    margin: 8px 0;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+  }
+  .tip ol, .tip ul {
+    margin: 10px 0;
+    padding-left: 22px;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+  }
+  .tip li { margin: 4px 0; }
+  .tip code, .tip kbd {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    padding: 2px 6px;
+    border-radius: 5px;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    color: var(--accent);
+    border: 1px solid var(--border);
+  }
+  .tip kbd {
+    background: var(--panel-hover);
+    color: var(--text);
+    box-shadow: 0 1px 0 var(--border-strong);
+  }
+  .tip a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--border-strong); }
+  .tip a:hover { border-bottom-color: var(--accent); }
+  .tip pre {
+    margin: 10px 0;
+    padding: 12px 14px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .tip pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
   footer {
     max-width: 1100px;
     margin: 60px auto 0;
@@ -545,6 +646,67 @@
 
   <div id="groups"></div>
   <p class="empty" id="empty" hidden>No diagrams match your search.</p>
+
+  <div class="tips-heading">
+    <h2>Editor tips & tricks</h2>
+    <p>Get more out of draw.io while building your summaries — math, fonts, and beautiful code snippets.</p>
+  </div>
+
+  <section class="tips" aria-label="Editor tips">
+    <article class="tip">
+      <h2>Math formulas with LaTeX <span class="chip">math</span></h2>
+      <p>Draw.io can render LaTeX inside any shape or text label — perfect for theorems, equations, and proofs in your summaries. Wrap your formula in single backticks <code>`…`</code> for inline math, or double dollars <code>$$…$$</code> for a display block.</p>
+      <p><strong>Enable it (already on for files opened from this site):</strong></p>
+      <ol>
+        <li>Open the editor with the <em>Edit</em> button above (the URL already includes <code>math=1</code>).</li>
+        <li>If you opened draw.io manually, go to <kbd>Extras</kbd> → <kbd>Mathematical Typesetting</kbd> and make sure it's checked.</li>
+        <li>Double-click any shape, type your formula between backticks, and press <kbd>Esc</kbd> to render.</li>
+      </ol>
+      <p><strong>Examples:</strong></p>
+      <pre><code>`E = mc^2`
+`\sum_{i=1}^{n} i = \frac{n(n+1)}{2}`
+$$\int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}$$</code></pre>
+      <p><strong>Tip:</strong> you don't need to memorize LaTeX — ask any AI assistant (ChatGPT, Claude, Gemini) to "convert this equation to LaTeX" and paste the result between the backticks.</p>
+      <p>Reference: <a href="https://apitemplate.io/pdf-tools/convert-markdown-to-pdf/" target="_blank" rel="noopener">apitemplate.io — Convert Markdown (with LaTeX) to PDF</a>.</p>
+    </article>
+
+    <article class="tip">
+      <h2>Custom typography with Google Fonts <span class="chip">fonts</span></h2>
+      <p>Draw.io supports any font from <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a> — just enable the integration once and type the family name.</p>
+      <ol>
+        <li>In the editor, open <kbd>Extras</kbd> → <kbd>Configuration…</kbd>.</li>
+        <li>Paste this JSON (or merge into existing config) and click <kbd>Apply</kbd> — the editor will reload:
+          <pre><code>{
+  "customFonts": ["Roboto", "Poppins", "Fira Code", "JetBrains Mono"]
+}</code></pre>
+        </li>
+        <li>Select any text or shape, open the right-side <kbd>Text</kbd> panel, and either pick a font from the <em>Custom Fonts</em> list or type the exact Google Fonts name (e.g. <code>Poppins</code>, <code>Cairo</code>, <code>Fira Code</code>).</li>
+        <li>The font is fetched from Google Fonts on the fly and embedded when you export to PDF/PNG.</li>
+      </ol>
+      <p><strong>Note:</strong> the font name must match the Google Fonts family <em>exactly</em> (case-sensitive). Browse <a href="https://fonts.google.com" target="_blank" rel="noopener">fonts.google.com</a> to find the right name.</p>
+    </article>
+
+    <article class="tip">
+      <h2>Beautiful code snippets <span class="chip">code</span></h2>
+      <p>Plain text doesn't do code justice. Two ways to get syntax-highlighted snippets into your diagrams:</p>
+      <p><strong>Option 1 — Carbon (online, easiest):</strong></p>
+      <ol>
+        <li>Open <a href="https://carbon.now.sh/" target="_blank" rel="noopener">carbon.now.sh</a>.</li>
+        <li>Paste your code, pick a theme and language.</li>
+        <li>Click <kbd>Export</kbd> → save as PNG (or copy as image).</li>
+        <li>Drag the image straight onto the draw.io canvas.</li>
+      </ol>
+      <p><strong>Option 2 — VS Code (keeps native fonts &amp; theme):</strong></p>
+      <ol>
+        <li>In VS Code, open <kbd>Ctrl</kbd>+<kbd>K</kbd> <kbd>Ctrl</kbd>+<kbd>S</kbd> to open <em>Keyboard Shortcuts</em>.</li>
+        <li>Search for the command <code>Copy With Syntax Highlighting</code> and bind it to a shortcut you'll remember (e.g. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd>).</li>
+        <li>Select the code you want to copy in the editor.</li>
+        <li>Press your new keybinding — VS Code copies the styled snippet to the clipboard.</li>
+        <li>Switch to draw.io and paste it onto a code-snippet shape from the <em>Scratchpad</em> library (the Scratchpad is preloaded when you open files from this site).</li>
+      </ol>
+      <p><strong>Tip:</strong> the Scratchpad already includes ready-made code-block frames — paste your highlighted code inside one for a clean, consistent look across all your summaries.</p>
+    </article>
+  </section>
 </div>
 
 <footer>
