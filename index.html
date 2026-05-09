@@ -13,6 +13,9 @@
 <meta name="twitter:title" content="Draw.io Summaries — CS @ Modern Academy">
 <meta name="twitter:description" content="A curated collection of .drawio notes, rule sheets, and study aids for CS @ Modern Academy — open any one in the draw.io editor with a click.">
 <meta name="twitter:image" content="meta.jpg">
+<link rel="icon" type="image/x-icon" href="logo.ico">
+<link rel="icon" type="image/png" sizes="512x512" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -148,14 +151,27 @@
     gap: 12px;
   }
   .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-weight: 600;
     font-size: 0.95rem;
     letter-spacing: -0.01em;
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .brand img {
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    box-shadow: 0 2px 8px var(--accent-glow);
+    display: block;
+  }
+  .brand-text {
     background: var(--grad);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    white-space: nowrap;
   }
   .nav-actions { display: flex; gap: 8px; align-items: center; }
   .icon-btn {
@@ -619,6 +635,87 @@
     .btn:hover, .icon-btn:hover, .group:hover { transform: none; }
   }
 
+  /* custom scrollbar (ported from dist/) */
+  ::-webkit-scrollbar { width: 12px; height: 12px; background: transparent; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(31, 32, 36, 0.3);
+    background-clip: padding-box;
+    border: 3px solid transparent;
+    border-radius: 999px;
+    transition: background-color 0.25s ease;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(227, 6, 19, 0.85);
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: #b30410;
+    background-clip: padding-box;
+  }
+  [data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(31, 32, 36, 0.35); background-clip: padding-box; }
+
+  /* custom cursor (ported from dist/) */
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor * { cursor: none !important; }
+  .cur-dot, .cur-ring {
+    position: fixed;
+    left: 0; top: 0;
+    pointer-events: none;
+    will-change: transform, width, height, opacity;
+    transform: translate3d(-100px, -100px, 0);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .cur-dot {
+    z-index: 9999;
+    width: 6px; height: 6px;
+    margin-left: -3px; margin-top: -3px;
+    border-radius: 50%;
+    background: #fff;
+    mix-blend-mode: difference;
+  }
+  .cur-ring {
+    z-index: 9998;
+    width: 30px; height: 30px;
+    margin-left: -15px; margin-top: -15px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
+    background: transparent;
+    transition: opacity 0.2s ease, width 0.25s cubic-bezier(0.16,1,0.3,1), height 0.25s cubic-bezier(0.16,1,0.3,1), margin 0.25s cubic-bezier(0.16,1,0.3,1), background-color 0.25s ease, border-color 0.25s ease, border-width 0.25s ease;
+  }
+  html.cur-visible .cur-dot,
+  html.cur-visible .cur-ring { opacity: 1; }
+  html.cur-hover .cur-dot { width: 4px; height: 4px; margin-left: -2px; margin-top: -2px; }
+  html.cur-hover .cur-ring {
+    width: 22px; height: 22px; margin-left: -11px; margin-top: -11px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-color: color-mix(in srgb, var(--accent-2) 70%, transparent);
+  }
+  html.cur-text .cur-dot { width: 2px; height: 22px; margin-left: -1px; margin-top: -11px; border-radius: 1px; }
+  html.cur-text .cur-ring {
+    width: 4px; height: 4px; margin-left: -2px; margin-top: -2px;
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    border-width: 1.5px;
+  }
+  html.cur-active .cur-ring {
+    width: 18px; height: 18px; margin-left: -9px; margin-top: -9px;
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+    border-color: var(--accent);
+    transition: opacity 0.2s ease, width 0.12s cubic-bezier(0.4,0,0.2,1), height 0.12s cubic-bezier(0.4,0,0.2,1), margin 0.12s cubic-bezier(0.4,0,0.2,1), background-color 0.12s ease, border-color 0.12s ease;
+  }
+  html.cur-active.cur-hover .cur-ring {
+    width: 14px; height: 14px; margin-left: -7px; margin-top: -7px;
+  }
+  html.cur-active .cur-dot {
+    width: 3px; height: 3px; margin-left: -1.5px; margin-top: -1.5px;
+  }
+  @media (hover: none), (pointer: coarse) {
+    .cur-dot, .cur-ring { display: none !important; }
+  }
+
   /* RTL overrides */
   [dir="rtl"] body { font-family: 'Cairo', 'Inter', system-ui, -apple-system, sans-serif; }
   [dir="rtl"] .search svg { left: auto; right: 14px; }
@@ -639,7 +736,10 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="brand">Modern Draw.io</div>
+    <a class="brand" href="#" aria-label="Modern Draw.io home">
+      <img src="logo.png" alt="" width="28" height="28">
+      <span class="brand-text">Modern Draw.io</span>
+    </a>
     <div class="nav-actions">
       <a class="icon-btn" href="https://github.com/Jazzmedo/draw" target="_blank" rel="noopener" aria-label="GitHub">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.01c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.68.79.56A11.51 11.51 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
@@ -1219,6 +1319,82 @@ addEventListener("touchmove", (e) => {
   if (e.touches[0]) setTarget(e.touches[0].clientX, e.touches[0].clientY);
 }, { passive: true });
 setTarget(innerWidth / 2, innerHeight / 2);
+
+// Custom cursor (ported from dist/)
+(function initCursor() {
+  if (!matchMedia("(pointer: fine)").matches) return;
+  const html = document.documentElement;
+  html.classList.add("has-custom-cursor");
+  const dot = document.createElement("div");
+  const ring = document.createElement("div");
+  dot.className = "cur-dot";
+  ring.className = "cur-ring";
+  dot.setAttribute("aria-hidden", "true");
+  ring.setAttribute("aria-hidden", "true");
+  document.body.appendChild(ring);
+  document.body.appendChild(dot);
+
+  let tx = -100, ty = -100;
+  let dx = -100, dy = -100, rx = -100, ry = -100;
+  let visible = false;
+  let raf = null;
+
+  function loop() {
+    dx += (tx - dx) * 0.35;
+    dy += (ty - dy) * 0.35;
+    rx += (tx - rx) * 0.18;
+    ry += (ty - ry) * 0.18;
+    dot.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
+    ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+    raf = requestAnimationFrame(loop);
+  }
+  raf = requestAnimationFrame(loop);
+
+  const HOVER_SEL = [
+    'a', 'button', '[role="button"]', 'summary', 'label',
+    'input[type="checkbox"]', 'input[type="radio"]', 'input[type="submit"]', 'input[type="button"]', 'input[type="range"]',
+    'select', '[tabindex]:not([tabindex="-1"])',
+    '.btn', '.icon-btn',
+    '.group', '.group-summary', '.file', '.file-icon',
+    '.tip', '.chip', '.eyebrow',
+    'code', 'kbd', 'pre',
+    'footer a', 'nav a',
+  ].join(', ');
+  const TEXT_SEL = 'input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="range"]), textarea, [contenteditable="true"]';
+
+  function updateState(target) {
+    if (!target || !(target instanceof Element)) {
+      html.classList.remove("cur-hover", "cur-text");
+      return;
+    }
+    if (target.closest(TEXT_SEL)) {
+      html.classList.add("cur-text");
+      html.classList.remove("cur-hover");
+    } else if (target.closest(HOVER_SEL)) {
+      html.classList.add("cur-hover");
+      html.classList.remove("cur-text");
+    } else {
+      html.classList.remove("cur-hover", "cur-text");
+    }
+  }
+
+  addEventListener("pointermove", (e) => {
+    tx = e.clientX; ty = e.clientY;
+    if (!visible) {
+      visible = true;
+      html.classList.add("cur-visible");
+    }
+    updateState(e.target);
+  }, { passive: true });
+
+  addEventListener("pointerover", (e) => updateState(e.target), { passive: true });
+  addEventListener("pointerout", () => updateState(null), { passive: true });
+  addEventListener("pointerdown", () => html.classList.add("cur-active"), { passive: true });
+  addEventListener("pointerup", () => html.classList.remove("cur-active"), { passive: true });
+  addEventListener("pointercancel", () => html.classList.remove("cur-active"), { passive: true });
+  addEventListener("blur", () => { visible = false; html.classList.remove("cur-visible", "cur-hover", "cur-text"); });
+  document.addEventListener("mouseleave", () => { visible = false; html.classList.remove("cur-visible"); });
+})();
 
 // Buttery smooth inertial scrolling (Lenis)
 function initLenis() {

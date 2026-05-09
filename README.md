@@ -1,6 +1,35 @@
-# Draw.io College Subjects — Summaries & Rules
+<div align="center">
 
-A personal collection of `.drawio` summaries, rule sheets, and study aids for Computer Science courses at Modern Academy.
+<img src="logo.png" alt="Modern Draw.io logo" width="140" height="140" />
+
+# Modern Draw.io — CS Summaries & Rules
+
+**A personal collection of `.drawio` summaries, rule sheets, and study aids for Computer Science courses at Modern Academy.**
+
+[![Stars](https://img.shields.io/github/stars/Jazzmedo/draw?style=for-the-badge&logo=github&color=7c9cff&labelColor=0f1117)](https://github.com/Jazzmedo/draw/stargazers)
+[![Forks](https://img.shields.io/github/forks/Jazzmedo/draw?style=for-the-badge&logo=github&color=a78bfa&labelColor=0f1117)](https://github.com/Jazzmedo/draw/network/members)
+[![Issues](https://img.shields.io/github/issues/Jazzmedo/draw?style=for-the-badge&logo=github&color=f59e0b&labelColor=0f1117)](https://github.com/Jazzmedo/draw/issues)
+[![Last commit](https://img.shields.io/github/last-commit/Jazzmedo/draw?style=for-the-badge&logo=git&color=22c55e&labelColor=0f1117)](https://github.com/Jazzmedo/draw/commits/main)
+
+[![Diagrams](https://img.shields.io/badge/diagrams-36-7c9cff?style=for-the-badge&logo=diagramsdotnet&logoColor=white&labelColor=0f1117)](#repository-structure)
+[![License](https://img.shields.io/badge/license-personal--use-a78bfa?style=for-the-badge&labelColor=0f1117)](#)
+[![Made with draw.io](https://img.shields.io/badge/made%20with-draw.io-F08705?style=for-the-badge&logo=diagramsdotnet&logoColor=white&labelColor=0f1117)](https://app.diagrams.net)
+
+[**🌐 Browse the gallery**](https://jazzmedo.github.io/draw/) · [**✏️ Open in draw.io**](https://app.diagrams.net) · [**⭐ Star the repo**](https://github.com/Jazzmedo/draw/stargazers)
+
+</div>
+
+---
+
+## 📊 At a glance
+
+| | |
+|---|---|
+| 📁 Total diagrams | **36** |
+| 🎓 Years covered | 2nd, 3rd, 4th |
+| 📚 Subject areas | Algorithms, OS, Networks, Compilers, NLP, AI, Cyber, HCI, Cloud, Multimedia, and more |
+| 🛠️ Format | `.drawio` (XML) |
+| 🌐 Live gallery | [jazzmedo.github.io/draw](https://jazzmedo.github.io/draw/) |
 
 ## ⚠️ Disclaimer
 
