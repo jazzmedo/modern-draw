@@ -484,6 +484,7 @@
     margin: 0;
     display: grid;
     gap: 16px;
+    grid-template-columns: minmax(0, 1fr);
   }
   .tip {
     background: var(--panel);
@@ -492,6 +493,9 @@
     border-radius: 14px;
     padding: 22px 24px;
     transition: border-color 0.2s ease;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
   .tip:hover { border-color: var(--border-strong); }
   .tip h2 {
@@ -608,6 +612,15 @@
     .file-name { width: 100%; flex-basis: 100%; }
     .actions { width: 100%; }
     .bg-glow::before, .bg-glow::after { width: 400px; height: 400px; }
+    .tips-heading { margin: 44px 0 14px; }
+    .tips { gap: 14px; }
+    .tip { padding: 18px 18px; border-radius: 12px; }
+    .tip h2 { font-size: 1rem; flex-wrap: wrap; gap: 8px; }
+    .tip h2 .chip { font-size: 0.64rem; padding: 2px 7px; }
+    .tip p, .tip ol, .tip ul { font-size: 0.9rem; }
+    .tip ol, .tip ul { padding-left: 20px; }
+    [dir="rtl"] .tip ol, [dir="rtl"] .tip ul { padding-left: 0; padding-right: 20px; }
+    .tip pre { padding: 10px 12px; font-size: 0.78rem; border-radius: 8px; }
   }
   @media (max-width: 480px) {
     .nav { width: 94%; top: 10px; border-radius: 22px; }
@@ -626,6 +639,18 @@
     .file { padding: 10px 16px; gap: 10px; }
     .file-icon { width: 28px; height: 28px; }
     .file-name { font-size: 0.88rem; }
+    .tips-heading { margin: 36px 0 12px; }
+    .tips-heading p { font-size: 0.88rem; }
+    .tips { gap: 12px; }
+    .tip { padding: 16px 14px; border-radius: 12px; }
+    .tip h2 { font-size: 0.95rem; gap: 6px; }
+    .tip h2 .chip { font-size: 0.6rem; padding: 2px 6px; }
+    .tip p, .tip ol, .tip ul { font-size: 0.86rem; line-height: 1.55; }
+    .tip ol, .tip ul { padding-left: 18px; }
+    [dir="rtl"] .tip ol, [dir="rtl"] .tip ul { padding-left: 0; padding-right: 18px; }
+    .tip pre { padding: 10px 12px; font-size: 0.72rem; border-radius: 8px; }
+    .tip code, .tip kbd { font-size: 0.8em; padding: 1px 5px; }
+    .tip pre code { font-size: inherit; padding: 0; }
     footer {
       flex-direction: column;
       align-items: flex-start;
