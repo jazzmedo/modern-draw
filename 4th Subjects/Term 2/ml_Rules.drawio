@@ -1,0 +1,55 @@
+<mxfile>
+  <diagram name="Page-1" id="_gnXkOeCC8O8u6XLvHWx">
+    <mxGraphModel dx="960" dy="592" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_ArjMHicb1KwL6Juz5Zt-3" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;fixedSize=1;size=16;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=ADLaM Display;fontSize=20;strokeWidth=2;align=center;spacingLeft=0;spacingBottom=5;fillStyle=hachure;fontStyle=0;rounded=1;arcSize=14;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DADLaM%2BDisplay;" value="Linear Regerssion" vertex="1">
+          <mxGeometry height="42.86" width="200.68" x="317" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_ArjMHicb1KwL6Juz5Zt-5" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="108.57" width="260" x="74" y="91.43" as="geometry" />
+        </mxCell>
+        <mxCell id="_ArjMHicb1KwL6Juz5Zt-1" parent="_ArjMHicb1KwL6Juz5Zt-5" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Mina;fontSize=22;" value="&lt;font&gt;`(X^T*X)^{-1}*X^T*y`&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="260" y="48.56999999999999" as="geometry" />
+        </mxCell>
+        <mxCell id="_ArjMHicb1KwL6Juz5Zt-4" parent="_ArjMHicb1KwL6Juz5Zt-5" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Mali;fontStyle=1;fontSize=18;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DMali;" value="Closed Form" vertex="1">
+          <mxGeometry height="48.57" width="120" x="70" as="geometry" />
+        </mxCell>
+        <mxCell id="_ArjMHicb1KwL6Juz5Zt-9" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="108.57" width="300" x="454" y="91.43" as="geometry" />
+        </mxCell>
+        <mxCell id="_ArjMHicb1KwL6Juz5Zt-7" parent="_ArjMHicb1KwL6Juz5Zt-9" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Mina;fontSize=22;" value="&lt;font&gt;`(X^T*X+\lamdai)^{-1}*X^T*y`&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="300" y="48.56999999999999" as="geometry" />
+        </mxCell>
+        <mxCell id="_ArjMHicb1KwL6Juz5Zt-8" parent="_ArjMHicb1KwL6Juz5Zt-9" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Mali;fontStyle=1;fontSize=18;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DMali;" value="Ridge Regression Form" vertex="1">
+          <mxGeometry height="48.57" width="220" x="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_ArjMHicb1KwL6Juz5Zt-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Mina;fontSize=22;" value="&lt;font&gt;`\beta_0=frac{sumx^2*sumy-sumx*sumxy}{n*sumx^2-(sumx)^2}`&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="392" x="20" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="_ArjMHicb1KwL6Juz5Zt-12" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Mali;fontStyle=1;fontSize=18;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DMali;" value="MSE" vertex="1">
+          <mxGeometry height="48.57" width="220" x="304" y="231.43" as="geometry" />
+        </mxCell>
+        <mxCell id="_ArjMHicb1KwL6Juz5Zt-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Mina;fontSize=22;" value="&lt;font&gt;`\beta_1=frac{n\sumxy-sumx*sumy}{n*sumx^2-(sumx)^2}`&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="328" x="482" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="pDdZhPwmgWAMnJHuiFof-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Mina;fontSize=22;" value="&lt;font&gt;`MSE=frac{sum(y-y^prime)^2}{n}`&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="392" x="217" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="bHGwhVibz7ECCrzn1xkq-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Mina;fontSize=22;" value="&lt;font&gt;`Entropy (s) = -P(&quot;yes&quot;)log_2(P(&quot;yes&quot;))+ -P(&quot;no&quot;)log_2(P(&quot;no&quot;))`&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="714" x="57" y="578.57" as="geometry" />
+        </mxCell>
+        <mxCell id="bHGwhVibz7ECCrzn1xkq-3" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Mali;fontStyle=1;fontSize=18;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DMali;" value="Decision Tree" vertex="1">
+          <mxGeometry height="48.57" width="132" x="349" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="bHGwhVibz7ECCrzn1xkq-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Mina;fontSize=22;" value="&lt;font&gt;`&quot;Weighted Entropy&quot; = \sum frac{branch size}{&quot;total size&quot;}\times branch entropy`&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="714" x="57" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="bHGwhVibz7ECCrzn1xkq-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Mina;fontSize=22;" value="&lt;font&gt;` &quot;information gain&quot; = Entropy (s) - &quot;Weighted Entropy&quot;`&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="714" x="57" y="860" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
